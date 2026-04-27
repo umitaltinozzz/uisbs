@@ -11,6 +11,8 @@
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-darkred?style=for-the-badge)](./LICENSE)
 [![Status](https://img.shields.io/badge/Status-Archived-gray?style=for-the-badge)]()
 
+ 
+
 ---
 
 > *This project began out of desperation — watching my father fight cancer while the medicine he needed was nowhere to be found in our city.*
@@ -35,14 +37,14 @@ UIBS (Ulusal İlaç Stok ve Bilgi Sistemi) is a centralized platform where pharm
 - **90,000+** drug records — barcode, active ingredient, ATC code, manufacturer, category
 - **40,000+** pharmacy records — province, district, address, phone number
 
-Sample dataset included: [`ilce_eczaneler_20250528_001708.csv`](./ilce_eczaneler_20250528_001708.csv)
+Sample dataset: [`ilce_eczaneler_20250528_001708.csv`](./ilce_eczaneler_20250528_001708.csv)
 
 ## Features
 
 - **Location-based drug search** — PostGIS distance queries; find pharmacies with your medication nearby
 - **Real-time inventory** — Pharmacies update stock; patients see live data
 - **Role-based access control** — Citizen / Pharmacy / Government Official / Admin
-- **Full audit logging** — Every critical action is logged for compliance
+- **Full audit logging** — Every critical action logged for compliance
 - **JWT + OAuth2 authentication** — Secure, stateless token flow
 - **OpenAPI / Swagger docs** — Auto-generated at `/docs`
 
@@ -88,65 +90,25 @@ cd frontend && npm install && npm start
 uisbs/
 ├── backend/
 │   ├── app/
-│   │   ├── api/v1/
-│   │   │   ├── api.py
-│   │   │   └── endpoints/
-│   │   │       ├── auth.py          # Register, login, token refresh, logout
-│   │   │       ├── drugs.py         # Drug search & detail
-│   │   │       ├── pharmacies.py    # Pharmacy listing & geosearch
-│   │   │       ├── search.py        # Combined location-aware search
-│   │   │       ├── stocks.py        # Inventory management
-│   │   │       ├── users.py         # User profile & management
-│   │   │       └── admin.py         # Admin-only operations
-│   │   ├── core/
-│   │   │   ├── config.py            # App settings (Pydantic)
-│   │   │   └── database.py          # SQLAlchemy + PostGIS engine
-│   │   ├── models/
-│   │   │   ├── user.py              # User model (RBAC roles)
-│   │   │   ├── drug.py              # Drug & ATC models
-│   │   │   ├── pharmacy.py          # Pharmacy + geolocation model
-│   │   │   └── audit_log.py         # Audit trail model
-│   │   ├── schemas/
-│   │   │   └── user.py              # Pydantic request/response schemas
-│   │   ├── services/
-│   │   │   ├── auth_service.py      # Auth business logic
-│   │   │   └── audit_service.py     # Audit logging service
-│   │   ├── utils/
-│   │   │   └── security.py          # Password hashing, JWT helpers
-│   │   └── main.py                  # FastAPI app entry point
-│   ├── .env.example
+│   │   ├── api/v1/endpoints/   # REST endpoints
+│   │   ├── core/               # Config, database
+│   │   ├── models/             # SQLAlchemy models
+│   │   ├── schemas/            # Pydantic schemas
+│   │   ├── services/           # Business logic
+│   │   └── utils/              # Auth & helpers
 │   ├── Dockerfile
 │   └── requirements.txt
-├── frontend/
-│   └── src/
-│       ├── components/
-│       │   ├── Auth/
-│       │   │   └── ProtectedRoute.tsx
-│       │   └── Layout/
-│       │       ├── Header.tsx
-│       │       ├── Footer.tsx
-│       │       └── Layout.tsx
-│       ├── contexts/
-│       │   └── AuthContext.tsx
-│       ├── pages/
-│       │   ├── HomePage.tsx
-│       │   ├── Auth/
-│       │   │   ├── LoginPage.tsx
-│       │   │   └── RegisterPage.tsx
-│       │   ├── Search/
-│       │   │   └── SearchPage.tsx
-│       │   └── Pharmacy/
-│       │       └── PharmacyDashboard.tsx
-│       ├── App.tsx
-│       └── index.tsx
+├── frontend/src/
+│   ├── components/
+│   ├── pages/
+│   └── contexts/
 ├── ilce_eczaneler_20250528_001708.csv
-├── docker-compose.yml
-└── .gitignore
+└── docker-compose.yml
 ```
 
 ## Why It Was Left Unfinished
 
-Scaling this system nationwide hit walls that no individual developer can climb alone:
+Scaling this system nationwide — or across EU member states — hit walls that no individual developer can climb alone:
 
 - **Ministry of Health license** — Centralizing pharmacy stock data requires an official MoH permit
 - **KVKK / GDPR compliance** — Formal DPAs and a designated DPO required
