@@ -39,6 +39,10 @@ UIBS (Ulusal İlaç Stok ve Bilgi Sistemi) is a centralized platform where pharm
 
 Sample dataset: [`ilce_eczaneler_20250528_001708.csv`](./ilce_eczaneler_20250528_001708.csv)
 
+## Project Status
+
+Archived public-service prototype. This is not an official healthcare platform; it is kept public as a portfolio project exploring pharmacy inventory, geospatial search, and API-first system design.
+
 ## Features
 
 - **Location-based drug search** — PostGIS distance queries; find pharmacies with your medication nearby
